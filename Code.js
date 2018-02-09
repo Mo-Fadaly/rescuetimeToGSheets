@@ -1,4 +1,4 @@
-function rescueTimeToSheets() {  //Add where to place cells, add API key entry, add skipping permissions to write on sheet 
+function rescueTimeToSheets() { 
   //Grab spreadsheet name / date
   var spreadsheetObject = SpreadsheetApp.getActiveSpreadsheet();  
   var nameOfDate = spreadsheetObject.getSheetName()+"";
