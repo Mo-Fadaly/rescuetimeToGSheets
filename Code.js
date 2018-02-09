@@ -14,36 +14,36 @@ function rescueTimeToSheets() {
   var numberOfProductive=0, numberOfNeutral=0, numberOfUnproductive=0;
   
   //Format each of the rows that are in the data
-  for (var x =3; x< data.rows.length; x++) //I guess this runs O(x) where x is the number of items you have in rescueTime
+  for (var x =0; x< data.rows.length; x++)
   {
-    if (data.rows[x-3][5]>0) //Productive Tasks
+    if (data.rows[x][5]>0) //Productive Tasks
     {
       //Pick the cell
-      var activeRange = spreadsheetObject.getRange("C"+(x-numberOfUnproductive-numberOfNeutral)+":C"+(x-numberOfUnproductive-numberOfNeutral));// CX:CX where x is the column row
+      var activeRange = spreadsheetObject.getRange("C"+(3+x-numberOfUnproductive-numberOfNeutral)+":C"+(3+x-numberOfUnproductive-numberOfNeutral));// CX:CX where x is the column row
       //Set the cell as the active cell
       spreadsheetObject.setActiveRange(activeRange);
       //Write to the active cell
-      spreadsheetObject.getActiveRange().setValue(data.rows[x-3][3]);
+      spreadsheetObject.getActiveRange().setValue(data.rows[x][3]);
       
       //For time (in seconds) of processes
-      var activeRange = spreadsheetObject.getRange("D"+(x-numberOfUnproductive-numberOfNeutral)+":D"+(x-numberOfUnproductive-numberOfNeutral));
+      var activeRange = spreadsheetObject.getRange("D"+(3+x-numberOfUnproductive-numberOfNeutral)+":D"+(3+x-numberOfUnproductive-numberOfNeutral));
       spreadsheetObject.setActiveRange(activeRange);
-      spreadsheetObject.getActiveRange().setValue((data.rows[x-3][1])/3600);
+      spreadsheetObject.getActiveRange().setValue((data.rows[x][1])/3600);
       
       numberOfProductive++;
     }
-    else if (data.rows[x-3][5]==0) //Neutral tasks
+    else if (data.rows[x][5]==0) //Neutral tasks
     {
       numberOfNeutral++;
     }
     else //Unproductive tasks
     {
-      var activeRange = spreadsheetObject.getRange("E"+(x-numberOfProductive-numberOfNeutral)+":E"+(x-numberOfProductive-numberOfNeutral));
+      var activeRange = spreadsheetObject.getRange("E"+(3+x-numberOfProductive-numberOfNeutral)+":E"+(3+x-numberOfProductive-numberOfNeutral));
       spreadsheetObject.setActiveRange(activeRange);
-      spreadsheetObject.getActiveRange().setValue(data.rows[x-3][3]);
-      var activeRange = spreadsheetObject.getRange("F"+(x-numberOfProductive-numberOfNeutral)+":F"+(x-numberOfProductive-numberOfNeutral));
+      spreadsheetObject.getActiveRange().setValue(data.rows[x][3]);
+      var activeRange = spreadsheetObject.getRange("F"+(3+x-numberOfProductive-numberOfNeutral)+":F"+(3+x-numberOfProductive-numberOfNeutral));
       spreadsheetObject.setActiveRange(activeRange);
-      spreadsheetObject.getActiveRange().setValue(data.rows[x-3][1]/3600);
+      spreadsheetObject.getActiveRange().setValue(data.rows[x][1]/3600);
       
       numberOfUnproductive++;
     }
